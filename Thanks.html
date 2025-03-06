@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn bạn đã Donate!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .thank-you {
+            font-size: 4em;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .donator-info {
+            font-size: 1.1em;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ff007a;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff4da6;
+            box-shadow: 0 0 15px #ff007a;
+        }
+
+        /* Nút điều khiển âm thanh */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+
+        .audio-btn {
+            padding: 10px 20px;
+            background: #00ffcc;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .audio-btn:hover {
+            background: #66ffe6;
+            box-shadow: 0 0 10px #00ffcc;
+        }
+
+        /* Hiệu ứng glow */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            }
+            to {
+                text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .thank-you {
+                font-size: 2.5em;
+            }
+            .message {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 10px 20px;
+            }
+            .audio-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container">
+        <h1 class="thank-you">CẢM ƠN BẠN RẤT RẤT RẤT NHIỀU ❤️!</h1>
+        <p class="message">Sự ủng hộ của bạn là động lực lớn để chúng tôi phát triển. Chúc bạn một ngày tuyệt vời!</p>
+        <div class="donator-info">
+            <span>Tên: <strong id="username">[Hiếu Dz * DuckNoVis]</strong></span>
+        </div>
+        <a href="https://discord.gg/YBy6dxmKeS" class="btn">Link Discord</a>
+    </div>
+
+    <!-- Nhạc nền từ Dropbox của bạn -->
+    <audio id="background-audio" loop>
+        <source src="https://www.dropbox.com/s/8heer592ktysikx/Remix%20Music.mp3?dl=1" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ thẻ audio.
+    </audio>
+
+    <!-- Nút bật/tắt âm thanh -->
+    <div class="audio-control">
+        <button id="audio-btn" class="audio-btn">Tắt nhạc</button>
+    </div>
+
+    <!-- Nhúng Particles.js từ CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Khởi tạo Particles.js với hiệu ứng bong bóng
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 50,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#00ffcc", "#ff007a", "#ffffff"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 10,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 5,
+                        "size_min": 5,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "bubble"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "bubble": {
+                        "distance": 200,
+                        "size": 15,
+                        "duration": 2,
+                        "opacity": 0.8
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Lấy tên từ URL và điều khiển âm thanh
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('user') || "Người tuyệt vời";
+            document.getElementById("username").textContent = username;
+
+            // Điều khiển âm thanh
+            const audio = document.getElementById("background-audio");
+            const audioBtn = document.getElementById("audio-btn");
+            audio.volume = 0.3; // Giảm âm lượng để không quá to
+            audio.play().catch(function(error) {
+                console.log("Tự động phát bị chặn: ", error);
+                audioBtn.textContent = "Bật nhạc"; // Đổi nút thành "Bật nhạc" nếu bị chặn
+            });
+
+            audioBtn.addEventListener("click", function() {
+                if (audio.paused) {
+                    audio.play();
+                    audioBtn.textContent = "Tắt nhạc";
+                } else {
+                    audio.pause();
+                    audioBtn.textContent = "Bật nhạc";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
